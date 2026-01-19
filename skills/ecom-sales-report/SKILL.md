@@ -1,11 +1,11 @@
 ---
-name: loveluxbags-sales-report
-description: 將 LoveLuxBags 銷售報表 Excel 檔案轉換為 Google Slides 簡報。當使用者需要整理月度銷售數據、分析銷售表現或製作銷售報告簡報時使用此 skill。觸發情境包括：「整理這個月的銷售報表」、「幫我做銷售簡報」、「分析銷售數據」等請求。
+name: ecom-sales-report
+description: 將銷售報表 Excel 檔案轉換為 Google Slides 簡報。當使用者需要整理月度銷售數據、分析銷售表現或製作銷售報告簡報時使用此 skill。觸發情境包括：「整理這個月的銷售報表」、「幫我做銷售簡報」、「分析銷售數據」等請求。
 ---
 
-# LoveLuxBags 銷售報表轉 Google Slides
+# 銷售報表轉 Google Slides
 
-將 LoveLuxBags 的銷售報表 Excel 檔案解析並整理成專業的 Google Slides 簡報。
+將銷售報表 Excel 檔案解析並整理成專業的 Google Slides 簡報。
 
 ## 支援模式
 
@@ -296,7 +296,7 @@ def main(file_paths, output_dir=None):
     if len(file_paths) == 1:
         # 單月報告
         data = parse_single_file(file_paths[0])
-        output_filename = f"LoveLuxBags_Sales_Report_{data['year']}{data['month']}.pptx"
+        output_filename = f"Sales_Report_{data['year']}{data['month']}.pptx"
         output_path = os.path.join(output_dir, output_filename)
         create_single_month_presentation(data, output_path)
     else:
@@ -304,7 +304,7 @@ def main(file_paths, output_dir=None):
         data = parse_multiple_files(file_paths)
         months = [m['month'] for m in data['monthly_data']]
         year = data['monthly_data'][0]['year']
-        output_filename = f"LoveLuxBags_Sales_Report_{year}_{months[0]}-{months[-1]}.pptx"
+        output_filename = f"Sales_Report_{year}_{months[0]}-{months[-1]}.pptx"
         output_path = os.path.join(output_dir, output_filename)
         create_multi_month_presentation(data, output_path)
 
@@ -331,8 +331,8 @@ def main(file_paths, output_dir=None):
 
 ## 輸出檔案
 
-- 單月：`LoveLuxBags_Sales_Report_YYYYMM.pptx`
-- 多月：`LoveLuxBags_Sales_Report_YYYY_MM-MM.pptx`
+- 單月：`Sales_Report_YYYYMM.pptx`
+- 多月：`Sales_Report_YYYY_MM-MM.pptx`
 - 輸出位置：與原始 Excel 檔案相同目錄
 
 ## 依賴套件
